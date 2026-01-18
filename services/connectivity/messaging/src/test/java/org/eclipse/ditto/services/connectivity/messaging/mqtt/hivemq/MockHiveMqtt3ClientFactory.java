@@ -63,6 +63,15 @@ class MockHiveMqtt3ClientFactory implements HiveMqtt3ClientFactory {
 
     private final List<Mqtt3AsyncClient> clients = new LinkedList<>();
 
+    /**
+     * Returns how many (mock) MQTT clients were created and connected.
+     *
+     * This is intentionally simple test-only introspection used by P0 reconnect/redelivery tests.
+     */
+    int getCreatedClientCount() {
+        return clients.size();
+    }
+
     MockHiveMqtt3ClientFactory withException(final Exception connectException) {
         this.connectException = connectException;
         return this;
